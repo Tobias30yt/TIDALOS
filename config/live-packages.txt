@@ -44,6 +44,8 @@ xserver-xorg-video-all
 xserver-xorg-input-all
 x11-xserver-utils
 arandr
+autorandr
+cinnamon-settings-daemon
 network-manager
 network-manager-gnome
 pipewire-audio

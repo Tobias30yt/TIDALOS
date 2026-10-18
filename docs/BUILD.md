@@ -30,7 +30,7 @@ Anschließend bei der Anmeldung Cinnamon auswählen. Die Standardwerte greifen b
 sudo bash scripts/build-live.sh
 ```
 
-Der Build arbeitet unter `/var/tmp/tidalos-build-0.1.0` und erzeugt `dist/tidalos-0.1.0-amd64-r3.iso`, eine Paketliste und `SHA256SUMS`. Die sichtbare Build-Kennung `r3` im Dateinamen und Startmenü unterscheidet dieses Image von älteren Dateien. Er verwendet signierte Ubuntu-Noble-Paketquellen mit Updates und Security. Bei jedem Build werden lokale TIDALOS-Pakete ausdrücklich neu installiert und die Calamares-Branding-Datei danach direkt mit der Repository-Datei abgeglichen. Vor dem Erzeugen der ISO prüft `unsquashfs` außerdem, dass die Branding-Datei im gepackten Live-Dateisystem exakt der Repository-Datei entspricht; ein veralteter oder unvollständiger Installer-Build bricht dadurch früh ab. Ein Lock verhindert gleichzeitige Builds im selben Verzeichnis. Ein frischer Build kann mit `sudo TIDALOS_BUILD_DIR=/var/tmp/tidalos-build-neu bash scripts/build-live.sh` gestartet werden. Nicht unter Windows-PowerShell direkt ausführen.
+Der Build arbeitet unter `/var/tmp/tidalos-build-0.1.0` und erzeugt `dist/tidalos-0.1.0-amd64-r4.iso`, eine Paketliste und `SHA256SUMS`. Die sichtbare Build-Kennung `r4` im Dateinamen, Startmenü und in `/etc/tidalos-release` unterscheidet dieses Image von älteren Dateien. Er verwendet signierte Ubuntu-Noble-Paketquellen mit Updates und Security. Calamares sucht Branding zuerst unter `/etc/calamares/branding` und danach unter `/usr/share/calamares/branding`; daher werden Branding, Bild und QML-Präsentation an beiden Stellen installiert und vor dem Build mit den Quelldateien verglichen. Die Slideshow nutzt Calamares' QML-Format. Vor dem Erzeugen der ISO prüft `unsquashfs`, dass beide Branding-Dateien und die QML-Präsentation im gepackten Live-Dateisystem aktuell sind; ein veralteter oder unvollständiger Installer-Build bricht dadurch früh ab. Der Installer zeigt eine verständliche Meldung, wenn die ISO nicht Build r4 ist. Ein Lock verhindert gleichzeitige Builds im selben Verzeichnis. Ein frischer Build kann mit `sudo TIDALOS_BUILD_DIR=/var/tmp/tidalos-build-neu bash scripts/build-live.sh` gestartet werden. Nicht unter Windows-PowerShell direkt ausführen.
 
 Die Abhängigkeiten sind noch nicht auf einen Repository-Snapshot fixiert; spätere Builds können neuere Ubuntu-Pakete enthalten. Deshalb ist dies ein wiederholbarer Buildprozess, noch kein bitidentisch reproduzierbarer Releasebuild. `.deb`- und ISO-Signierung sowie ein eigenes Update-Repository sind noch nicht eingerichtet.
 
@@ -44,7 +44,7 @@ Die Live-Pakete enthalten Lutris, Wine für 64- und 32-Bit-Anwendungen, Winetric
 
 Die Entwicklungswerkzeuge umfassen Git, GCC/G++, CMake, GDB, pkg-config, Python 3 mit pip und virtuellen Umgebungen, Node.js/npm, Rust/Cargo, OpenJDK 21 JDK, Geany und Neovim. Der Build prüft, dass Python 3 im Root-Dateisystem vorhanden ist. `update-manager` und Synaptic stellen grafische Update- und Paketverwaltung bereit. Das zusätzliche Werkzeugset vergrößert das ISO und benötigt beim Build mehr Downloadzeit und Speicherplatz. Steam, Lutris und Winetricks benötigen Internet, um Spiele und weitere Laufzeitkomponenten zu laden.
 
-Für mehrere Monitore sind Cinnamon-Anzeigeeinstellungen, `arandr` als grafische XRandR-Oberfläche und `x11-xserver-utils` (einschließlich `xrandr`) enthalten. Ob externe Anschlüsse, Auflösungen und mehrere Displays funktionieren, hängt zusätzlich vom Grafiktreiber, der virtuellen Maschine und der Hardware ab.
+Für mehrere Monitore enthält das Image Cinnamon-Anzeigeeinstellungen, `arandr`, `x11-xserver-utils` (einschließlich `xrandr`) und `autorandr`. „Monitore einrichten“ im Willkommensprogramm öffnet die TIDALOS-Anzeigeverwaltung. Stelle das Layout zuerst in Cinnamon oder Arandr ein und speichere es dort unter einem Profilnamen; Autorandr kann passende Profile bei der Anmeldung und nach einem Displaywechsel wiederherstellen. Profile gelten pro Benutzer. Ob Anschlüsse, Auflösungen, Hotplug und mehrere Displays funktionieren, hängt zusätzlich vom Grafiktreiber, der virtuellen Maschine und der Hardware ab.
 
 Alle diese Pakete sind Teil desselben Live-Dateisystems und werden vom Festplatteninstaller mitinstalliert. Änderungen im nicht-persistenten Live-System gehen beim Ausschalten weiterhin verloren.
 
@@ -64,9 +64,9 @@ Den vollständigen Installationsablauf nur in einer Test-VM mit einer entbehrlic
 
 ```bash
 sudo apt install qemu-system-x86 ovmf
-sudo python3 scripts/test-boot.py dist/tidalos-0.1.0-amd64-r2.iso \
+sudo python3 scripts/test-boot.py dist/tidalos-0.1.0-amd64-r4.iso \
   --firmware bios --output dist/boot-bios
-sudo python3 scripts/test-boot.py dist/tidalos-0.1.0-amd64-r2.iso \
+sudo python3 scripts/test-boot.py dist/tidalos-0.1.0-amd64-r4.iso \
   --firmware uefi --output dist/boot-uefi
 ```
 

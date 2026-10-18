@@ -4,7 +4,7 @@ set -Eeuo pipefail
 umask 022
 repo=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 version=0.1.0
-image_revision=3
+image_revision=4
 work=${TIDALOS_BUILD_DIR:-/var/tmp/tidalos-build-0.1.0}
 [[ $EUID == 0 ]] || { echo 'Run with sudo in a Linux build environment.' >&2; exit 1; }
 [[ $work == /var/tmp/tidalos-build-* && $work != *'..'* ]] || { echo 'Build directory must be /var/tmp/tidalos-build-*' >&2; exit 1; }
@@ -56,12 +56,17 @@ python3 "$repo/scripts/build-packages.py"
 mkdir -p "$root/tmp/tidalos-packages"
 cp "$repo/dist/"tidalos-*"_${version}_all.deb" "$root/tmp/tidalos-packages/"
 chroot "$root" /bin/bash -c 'DEBIAN_FRONTEND=noninteractive apt-get install --reinstall -y --no-install-recommends /tmp/tidalos-packages/*.deb'
-branding="$root/usr/share/calamares/branding/tidalos/branding.desc"
-install -D -m 644 "$repo/config/calamares/branding.desc" "$branding"
-if ! cmp -s "$repo/config/calamares/branding.desc" "$branding" || ! grep -q '^slideshow:' "$branding"; then
-  echo 'Calamares branding config is missing or differs from the repository source.' >&2
-  exit 1
-fi
+for branding_dir in "$root/etc/calamares/branding/tidalos" "$root/usr/share/calamares/branding/tidalos"; do
+  install -D -m 644 "$repo/config/calamares/branding.desc" "$branding_dir/branding.desc"
+  install -m 644 "$repo/config/calamares/show.qml" "$branding_dir/show.qml"
+  install -m 644 "$repo/assets/branding/tidalos.svg" "$branding_dir/tidalos.svg"
+  if ! cmp -s "$repo/config/calamares/branding.desc" "$branding_dir/branding.desc" ||
+     ! cmp -s "$repo/config/calamares/show.qml" "$branding_dir/show.qml" ||
+     ! grep -q '^slideshow: "show.qml"$' "$branding_dir/branding.desc"; then
+    echo "Calamares branding config is missing or differs from the repository source: $branding_dir" >&2
+    exit 1
+  fi
+done
 chroot "$root" python3 --version
 chroot "$root" flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 chroot "$root" systemctl enable snapd.socket
@@ -111,7 +116,7 @@ NETPLAN
 chmod 600 "$root/etc/netplan/01-tidalos-network-manager.yaml"
 chroot "$root" systemctl enable lightdm.service NetworkManager.service
 chroot "$root" systemctl set-default graphical.target
-printf 'NAME=TIDALOS\nVERSION=0.1.0\nBASE=Ubuntu-24.04\nCHANNEL=live-alpha\n' > "$root/etc/tidalos-release"
+printf 'NAME=TIDALOS\nVERSION=0.1.0\nBASE=Ubuntu-24.04\nCHANNEL=live-alpha\nIMAGE_BUILD=r%s\n' "$image_revision" > "$root/etc/tidalos-release"
 # Keep Ubuntu's os-release intact so repositories and upstream tools identify the base correctly.
 mkdir -p "$root/etc/initramfs-tools/hooks" "$root/var/crash"
 install -m 755 "$repo/config/tidalos-initramfs-hook" "$root/etc/initramfs-tools/hooks/tidalos-live"
@@ -138,7 +143,7 @@ if loadfont unicode; then
 fi
 set menu_color_normal=light-cyan/black
 set menu_color_highlight=black/light-cyan
-menuentry "TIDALOS 0.1 - Live Desktop (Build r3)" {
+menuentry "TIDALOS 0.1 - Live Desktop (Build r4)" {
   linux /casper/vmlinuz boot=casper username=tidal hostname=tidalos locale=de_DE.UTF-8 keyboard-configuration/layoutcode=de nopersistent quiet console=tty0 console=ttyS0,115200 ---
   initrd /casper/initrd
 }
@@ -157,12 +162,25 @@ cp "$repo/docs/ROADMAP.md" "$iso/docs/ROADMAP.md"
 cleanup
 du -sx --block-size=1 "$root" | cut -f1 > "$iso/casper/filesystem.size"
 mksquashfs "$root" "$iso/casper/filesystem.squashfs" -noappend -comp zstd -Xcompression-level 10 -processors 4 -wildcards -e 'tmp/*' 'var/cache/apt/archives/*' 'var/lib/apt/lists/*' 'var/log/*'
-unsquashfs -cat "$iso/casper/filesystem.squashfs" usr/share/calamares/branding/tidalos/branding.desc > "$work/branding-from-squashfs.desc"
-if ! cmp -s "$repo/config/calamares/branding.desc" "$work/branding-from-squashfs.desc"; then
-  echo 'Built live filesystem is missing the Calamares slideshow branding key.' >&2
-  exit 1
-fi
-rm -f "$work/branding-from-squashfs.desc"
+for branding_path in \
+  etc/calamares/branding/tidalos/branding.desc \
+  usr/share/calamares/branding/tidalos/branding.desc; do
+  unsquashfs -cat "$iso/casper/filesystem.squashfs" "$branding_path" > "$work/branding-from-squashfs.desc"
+  if ! cmp -s "$repo/config/calamares/branding.desc" "$work/branding-from-squashfs.desc"; then
+    echo "Built live filesystem has stale Calamares branding at $branding_path." >&2
+    exit 1
+  fi
+done
+for slideshow_path in \
+  etc/calamares/branding/tidalos/show.qml \
+  usr/share/calamares/branding/tidalos/show.qml; do
+  unsquashfs -cat "$iso/casper/filesystem.squashfs" "$slideshow_path" > "$work/show-from-squashfs.qml"
+  if ! cmp -s "$repo/config/calamares/show.qml" "$work/show-from-squashfs.qml"; then
+    echo "Built live filesystem has a missing or stale Calamares slideshow at $slideshow_path." >&2
+    exit 1
+  fi
+done
+rm -f "$work/branding-from-squashfs.desc" "$work/show-from-squashfs.qml"
 (cd "$iso" && find . -type f ! -name md5sum.txt -print0 | sort -z | xargs -0 md5sum > md5sum.txt)
 grub-mkrescue -o "$repo/dist/tidalos-${version}-amd64-r${image_revision}.iso" "$iso" -- -volid TIDALOS_010
 cd "$repo/dist"

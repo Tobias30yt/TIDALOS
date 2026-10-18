@@ -85,7 +85,7 @@ class Welcome(Gtk.Application):
         for index, (title, command, primary) in enumerate([
             ("Apps installieren", ["tidalos-store"], True),
             ("Grafiktreiber", ["software-properties-gtk", "--open-tab=4"], False),
-            ("Monitore einrichten", ["cinnamon-settings", "display"], False),
+            ("Monitore einrichten", ["tidalos-displays"], False),
             ("Design anpassen", ["cinnamon-settings", "themes"], True),
             ("Dateien öffnen", ["nemo"], False),
             ("Einstellungen", ["cinnamon-settings"], False),

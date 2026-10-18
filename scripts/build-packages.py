@@ -12,7 +12,7 @@ PACKAGES = {
     "tidalos-wallpapers": ("", "Original Deep Ocean wallpaper and TIDALOS identity"),
     "tidalos-theme": ("cinnamon-common, gnome-themes-extra, adwaita-icon-theme", "Deep Ocean Cinnamon and GTK 3 theme"),
     "tidalos-default-settings": ("cinnamon, nemo, tidalos-theme (= 0.1.0), tidalos-wallpapers (= 0.1.0), fonts-ubuntu, libglib2.0-bin", "Default appearance for new TIDALOS desktop users"),
-    "tidalos-welcome": ("python3, python3-gi, gir1.2-gtk-3.0, tidalos-wallpapers (= 0.1.0)", "Native TIDALOS welcome application"),
+    "tidalos-welcome": ("python3, python3-gi, gir1.2-gtk-3.0, autorandr, arandr, cinnamon-settings-daemon, x11-xserver-utils, tidalos-wallpapers (= 0.1.0)", "Native TIDALOS welcome and display profile applications"),
     "tidalos-store": ("python3, python3-gi, gir1.2-gtk-3.0, apt, flatpak, snapd", "TIDALOS multi-source application store"),
     "tidalos-installer": ("calamares, efibootmgr, grub-efi-amd64-bin, grub-pc-bin, squashfs-tools, zenity", "TIDALOS disk installer"),
     "tidalos-desktop": ("tidalos-default-settings (= 0.1.0), tidalos-welcome (= 0.1.0), tidalos-store (= 0.1.0), tidalos-installer (= 0.1.0), cinnamon, nemo, gnome-terminal, lightdm, slick-greeter, network-manager-gnome", "TIDALOS desktop metapackage"),
@@ -51,6 +51,8 @@ def populate(root, name):
         put(root, "apps/tidalos-welcome.desktop", "usr/share/applications/tidalos-welcome.desktop")
         put(root, "apps/tidalos-welcome-autostart.desktop", "etc/xdg/autostart/tidalos-welcome.desktop")
         put(root, "apps/tidalos-drivers.desktop", "usr/share/applications/tidalos-drivers.desktop")
+        put(root, "apps/displays.py", "usr/bin/tidalos-displays", executable=True)
+        put(root, "apps/tidalos-displays.desktop", "usr/share/applications/tidalos-displays.desktop")
     elif name == "tidalos-store":
         put(root, "apps/store.py", "usr/bin/tidalos-store", executable=True)
         put(root, "apps/tidalos-store.desktop", "usr/share/applications/tidalos-store.desktop")
@@ -62,7 +64,11 @@ def populate(root, name):
             if source.is_file():
                 put(root, source.relative_to(REPO), "etc/calamares/modules/" + str(source.relative_to(REPO / "config/calamares/modules")))
         put(root, "assets/branding/tidalos.svg", "usr/share/calamares/branding/tidalos/tidalos.svg")
+        put(root, "config/calamares/show.qml", "usr/share/calamares/branding/tidalos/show.qml")
         put(root, "config/calamares/branding.desc", "usr/share/calamares/branding/tidalos/branding.desc")
+        put(root, "assets/branding/tidalos.svg", "etc/calamares/branding/tidalos/tidalos.svg")
+        put(root, "config/calamares/show.qml", "etc/calamares/branding/tidalos/show.qml")
+        put(root, "config/calamares/branding.desc", "etc/calamares/branding/tidalos/branding.desc")
 
 
 def build():

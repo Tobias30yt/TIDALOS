@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=TIDALOS Display Manager
+Name[de]=TIDALOS-Anzeigeverwaltung
+Comment=Arrange monitors and save automatic display profiles
+Comment[de]=Monitore anordnen und automatische Anzeigeprofile speichern
+Exec=tidalos-displays
+Icon=preferences-desktop-display
+Terminal=false
+Categories=Settings;HardwareSettings;
+Keywords=monitor;display;screen;arandr;autorandr;
+StartupNotify=true

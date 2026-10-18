@@ -20,6 +20,7 @@ images:
   productIcon: tidalos.svg
   productLogo: tidalos.svg
   productWelcome: tidalos.svg
-slideshow: [ "/usr/share/calamares/branding/tidalos/tidalos.svg" ]
+slideshow: "show.qml"
+slideshowAPI: 2
 uploadServer:
   type: none

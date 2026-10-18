@@ -2,11 +2,11 @@
 
 **Tidalwave OS** — ein eigener Desktop auf Ubuntu-Basis.
 
-Status: **0.1.0 Live Alpha**. Nativer Cinnamon-Desktop, eigenes Theme, Willkommensprogramm und Calamares-Festplatteninstaller sind im Build integriert. Für den neuesten Stand muss Build r3 neu gebaut und genau die Datei `dist/tidalos-0.1.0-amd64-r3.iso` in der VM ausgewählt werden. Die Installation bietet manuelle Partitionierung und geführte Datenträgeroptionen; dabei ausgewählte Partitionen können gelöscht werden. Installer-Installation und Hardwareunterstützung sind noch nicht end-to-end validiert. Prüfergebnisse stehen in `docs/VALIDATION.md`.
+Status: **0.1.0 Live Alpha**. Nativer Cinnamon-Desktop, eigenes Theme, Willkommensprogramm und Calamares-Festplatteninstaller sind im Build integriert. Für den neuesten Stand muss Build r4 neu gebaut und genau die Datei `dist/tidalos-0.1.0-amd64-r4.iso` in der VM ausgewählt werden. Die Installation bietet manuelle Partitionierung und geführte Datenträgeroptionen; dabei ausgewählte Partitionen können gelöscht werden. Installer-Installation und Hardwareunterstützung sind noch nicht end-to-end validiert. Prüfergebnisse stehen in `docs/VALIDATION.md`.
 
 ## Starten
 
-Die neu gebaute Datei `dist/tidalos-0.1.0-amd64-r3.iso` als virtuelles DVD-Laufwerk in einer VM einlegen. Linux/Ubuntu 64-bit, mindestens 3 GB RAM und 2 CPUs wählen, Secure Boot ausschalten. Im Bootmenü „TIDALOS 0.1 - Live Desktop (Build r3)“ auswählen. Die Live-Sitzung meldet den Benutzer `tidal` automatisch an.
+Die neu gebaute Datei `dist/tidalos-0.1.0-amd64-r4.iso` als virtuelles DVD-Laufwerk in einer VM einlegen. Linux/Ubuntu 64-bit, mindestens 3 GB RAM und 2 CPUs wählen, Secure Boot ausschalten. Im Bootmenü „TIDALOS 0.1 - Live Desktop (Build r4)“ auswählen. Die Live-Sitzung meldet den Benutzer `tidal` automatisch an.
 
 Die VM benötigt zum Ausprobieren keine Festplatte. Änderungen der Live-Sitzung gehen beim Ausschalten verloren. Zum Installieren im Live-Desktop „TIDALOS installieren“ öffnen. Für einen Test eine VM mit einer leeren virtuellen Festplatte verwenden; die gewählte Installationsoption kann vorhandene Daten löschen. Die SHA-256-Prüfsumme liegt in `dist/SHA256SUMS`. Auf echter Hardware ist die Alpha noch nicht geprüft.
 
@@ -22,7 +22,7 @@ Der vollständige [Build- und Testablauf](docs/BUILD.md) beschreibt Paketbau, IS
 - Coding: Git, GCC/G++, CMake, GDB, Python mit pip/venv, Node.js/npm, Rust/Cargo, Java 21 JDK, Geany und Neovim.
 - Software: eigener TIDALOS App Store mit Suche in APT, Flathub, Snap und GitHub.
 - Systemwerkzeuge: grafische Update- und Paketverwaltung, Hardware-Treiber-Auswahl, Terminal-Monitoring und Datei-/Textwerkzeuge.
-- Mehrere Monitore: Cinnamon-Anzeigeeinstellungen, Arandr und XRandR-Werkzeuge für Anordnung und Auflösung externer Displays.
+- Mehrere Monitore: Cinnamon-Anzeigeeinstellungen, Arandr, XRandR und Autorandr mit speicherbaren Layoutprofilen und automatischer Wiederherstellung beim Displaywechsel.
 - Design: dunkle, ruhige Oberflächen; Türkis als Akzent; abstrakte Ozeanwellen.
 - Bestehende Ubuntu-Paketverwaltung und Sicherheitsupdates beibehalten.
 

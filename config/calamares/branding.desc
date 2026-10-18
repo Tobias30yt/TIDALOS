@@ -1,0 +1,25 @@
+---
+componentName: tidalos
+welcomeStyleCalamares: true
+windowExpanding: normal
+windowSize: 900px,600px
+strings:
+  productName: TIDALOS
+  shortProductName: TIDALOS
+  version: 0.1.0
+  shortVersion: "0.1"
+  versionedName: TIDALOS 0.1.0
+  shortVersionedName: TIDALOS 0.1
+  bootloaderEntryName: TIDALOS
+  productUrl: ""
+  supportUrl: ""
+  knownIssuesUrl: ""
+  releaseNotesUrl: ""
+  donateUrl: ""
+images:
+  productIcon: tidalos.svg
+  productLogo: tidalos.svg
+  productWelcome: tidalos.svg
+slideshow: [ "/usr/share/calamares/branding/tidalos/tidalos.svg" ]
+uploadServer:
+  type: none

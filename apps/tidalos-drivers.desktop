@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Graphics Drivers
+Name[de]=Grafiktreiber
+Comment=Select hardware drivers for this computer
+Comment[de]=Passende Hardwaretreiber für diesen Computer auswählen
+Exec=software-properties-gtk --open-tab=4
+Icon=preferences-desktop-display
+Terminal=false
+Categories=Settings;HardwareSettings;
+Keywords=drivers;graphics;nvidia;amd;hardware;
+StartupNotify=true

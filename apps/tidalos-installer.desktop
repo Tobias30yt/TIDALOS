@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Install TIDALOS
+Name[de]=TIDALOS installieren
+Comment=Install TIDALOS on this computer
+Comment[de]=TIDALOS auf diesem Computer installieren
+Exec=tidalos-installer
+Icon=tidalos
+Terminal=true
+Categories=System;
+StartupNotify=true

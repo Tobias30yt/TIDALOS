@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="ocean" x2="1" y2="1"><stop stop-color="#04131e"/><stop offset=".55" stop-color="#0b3448"/><stop offset="1" stop-color="#082032"/></linearGradient>
+    <linearGradient id="crest" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#55d7c8"/><stop offset=".42" stop-color="#167e91"/><stop offset="1" stop-color="#082d43"/></linearGradient>
+    <linearGradient id="deep" x2=".6" y2="1"><stop stop-color="#136078"/><stop offset="1" stop-color="#041522"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#56e2cd" stop-opacity=".18"/><stop offset="1" stop-color="#56e2cd" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path fill="url(#ocean)" d="M0 0h1920v1080H0z"/>
+  <ellipse cx="1400" cy="230" rx="850" ry="650" fill="url(#glow)"/>
+  <path d="M-100 1040C290 980 470 170 1080 310S1640 680 2020 100V1180H-100Z" fill="url(#crest)"/>
+  <path d="M-100 1040C290 980 470 170 1080 310S1640 680 2020 100" fill="none" stroke="#91f0dc" stroke-opacity=".5" stroke-width="2"/>
+  <path d="M-100 1140C420 1130 570 410 1100 490S1570 930 2020 400V1180H-100Z" fill="url(#deep)"/>
+  <path d="M-100 1140C420 1130 570 410 1100 490S1570 930 2020 400" fill="none" stroke="#58b5bf" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M-100 1180C600 1220 650 700 1200 770S1660 1030 2020 740V1180Z" fill="#061b2a" fill-opacity=".75"/>
+</svg>

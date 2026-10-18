@@ -1,0 +1,60 @@
+/* Use Cinnamon's complete native widget theme as the compatibility base. */
+@import url("/usr/share/cinnamon/theme/cinnamon.css");
+
+stage { font-family: Ubuntu, Noto Sans, sans-serif; font-size: 10pt; color: #ecf5f7; }
+#panel { background-color: #0c1923; color: #ecf5f7; border: 0; border-top: 1px solid #2b3f4d; font-size: 10pt; }
+.panel-top, .panel-bottom { padding: 2px 8px; }
+.applet-box { color: #c5d7de; border-radius: 8px; padding: 0 8px; }
+.applet-box:hover, .applet-box:checked { background-color: #203744; color: #5ce0cf; }
+.applet-label { color: #ecf5f7; font-weight: normal; }
+.applet-separator-line { background: #2b3f4d; width: 1px; }
+.grouped-window-list-item-box, .window-list-item-box { background: transparent; color: #b9cdd7; border: 0; border-radius: 8px; margin: 3px; padding: 5px 10px; }
+.grouped-window-list-item-box:active, .grouped-window-list-item-box:checked, .grouped-window-list-item-box:focus,
+.window-list-item-box:checked, .window-list-item-box:focus { background-color: #203b46; color: #5ce0cf; box-shadow: inset 0 -2px #5ce0cf; }
+.grouped-window-list-item-box:hover, .window-list-item-box:hover { background-color: #29434f; }
+.popup-menu-boxpointer { -arrow-background-color: #12222e; -arrow-border-color: #344d5b; -arrow-border-width: 1px; -arrow-border-radius: 14px; -arrow-base: 0px; -arrow-rise: 0px; }
+.popup-menu { color: #ecf5f7; font-size: 10pt; }
+.popup-menu-content { padding: 12px; }
+.popup-menu-item { padding: 8px 12px; spacing: 12px; border-radius: 8px; }
+.popup-menu-item:active { background-color: #24414a; color: #85f0de; }
+.popup-menu-item:insensitive { color: #718895; }
+.popup-separator-menu-item .popup-separator-menu-item-separator { background-color: #2b3f4d; height: 1px; }
+.popup-sub-menu { background-color: #0c1923; border-radius: 8px; box-shadow: none; }
+.menu { padding: 0; }
+.menu-favorites-box { background-color: #0d1b25; border: 0; border-radius: 10px; padding: 10px; }
+.menu-favorites-button { border-radius: 9px; padding: 10px; }
+.menu-favorites-button:hover { background-color: #24414a; }
+.menu-categories-box { padding: 6px; }
+.menu-category-button, .menu-application-button { padding: 9px 12px; border: 0; border-radius: 8px; color: #c9dce2; }
+.menu-category-button-selected, .menu-application-button-selected { padding: 9px 12px; border: 0; border-radius: 8px; background-color: #24414a; color: #85f0de; }
+.menu-selected-app-title { color: #ecf5f7; font-weight: bold; }
+.menu-selected-app-description { color: #a2b7c3; }
+.menu-search-entry { background-color: #0b1822; color: #ecf5f7; border: 1px solid #375361; border-radius: 9px; padding: 10px; caret-color: #5ce0cf; selected-color: #062b29; selection-background-color: #5ce0cf; }
+.menu-search-entry:focus { border-color: #5ce0cf; }
+.menu-search-entry-icon { color: #a2b7c3; }
+.calendar { background-color: transparent; color: #ecf5f7; padding: 6px; }
+.calendar-day-base { border: 0; border-radius: 8px; }
+.calendar-day-base:hover { background-color: #24414a; }
+.calendar-today { background-color: #5ce0cf; color: #062b29; font-weight: bold; }
+.calendar-other-month-day { color: #718895; }
+.calendar-day-heading, .calendar-month-label { color: #b9cdd7; }
+.notification, #notification { background-color: #12222e; color: #ecf5f7; border: 1px solid #344d5b; border-radius: 14px; padding: 16px; }
+.notification-button { background-color: #203b46; color: #85f0de; border: 0; border-radius: 8px; padding: 8px 16px; }
+.notification-button:hover { background-color: #2b4b56; }
+.modal-dialog { background-color: #12222e; border: 1px solid #344d5b; color: #ecf5f7; border-radius: 16px; padding: 24px; }
+.modal-dialog-button { background-color: #203b46; color: #ecf5f7; border: 1px solid #344d5b; border-radius: 8px; padding: 10px 20px; }
+.modal-dialog-button:hover { background-color: #2b4b56; }
+.modal-dialog-button:focus { border-color: #5ce0cf; }
+.osd-window { background-color: #12222e; border: 1px solid #344d5b; border-radius: 18px; color: #5ce0cf; padding: 20px; }
+.osd-window .level { background-color: #2b3f4d; color: #5ce0cf; border-radius: 5px; }
+.popup-slider-menu-item { -slider-background-color: #2b3f4d; -slider-active-background-color: #5ce0cf; -slider-border-color: #2b3f4d; -slider-active-border-color: #5ce0cf; color: #ecf5f7; }
+StScrollBar StBin#trough { background-color: transparent; }
+StScrollBar StButton#vhandle, StScrollBar StButton#hhandle { background-color: #375361; border: 0; border-radius: 5px; }
+StScrollBar StButton#vhandle:hover, StScrollBar StButton#hhandle:hover { background-color: #5c7d8d; }
+#Tooltip { background-color: #203744; color: #ecf5f7; border: 1px solid #375361; border-radius: 7px; padding: 7px 11px; }
+.switcher-list { background-color: #12222e; border: 1px solid #344d5b; border-radius: 16px; padding: 16px; }
+.switcher-list .item-box { border: 0; border-radius: 10px; padding: 12px; }
+.switcher-list .item-box:selected { background-color: #24414a; color: #5ce0cf; }
+.workspace-osd { background-color: #12222e; color: #ecf5f7; border: 1px solid #344d5b; border-radius: 12px; padding: 12px 24px; }
+.workspace-thumbnail-indicator { border: 2px solid #5ce0cf; }
+.overview-empty-placeholder { color: #ecf5f7; }

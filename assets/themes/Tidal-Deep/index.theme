@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Tidal Deep
+Comment=Deep ocean surfaces and a turquoise accent for TIDALOS
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Tidal-Deep
+MetacityTheme=Adwaita
+IconTheme=Adwaita
+CursorTheme=Adwaita

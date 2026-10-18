@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=TIDALOS Welcome
+Name[de]=Willkommen bei TIDALOS
+Comment=Your desktop. Your flow.
+Comment[de]=Dein Desktop. Dein Flow.
+Exec=tidalos-welcome
+Icon=tidalos
+Terminal=false
+Categories=Settings;
+StartupNotify=true

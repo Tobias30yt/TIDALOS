@@ -1,0 +1,7 @@
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.css text eol=lf
+*.desktop text eol=lf
+*.gschema.override text eol=lf
+apps/tidalos-installer text eol=lf

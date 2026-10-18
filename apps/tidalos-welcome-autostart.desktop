@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=TIDALOS Welcome
+Name[de]=Willkommen bei TIDALOS
+Exec=tidalos-welcome --autostart
+Icon=tidalos
+Terminal=false
+OnlyShowIn=X-Cinnamon;
+X-GNOME-Autostart-enabled=true

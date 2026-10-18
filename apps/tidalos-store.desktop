@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=TIDALOS App Store
+Comment=Anwendungen aus APT, Flathub und Snap suchen und installieren
+Exec=tidalos-store
+Icon=tidalos
+Terminal=false
+Categories=System;PackageManager;
+Keywords=Software;Apps;APT;Flatpak;Flathub;Snap;GitHub;
+StartupNotify=true

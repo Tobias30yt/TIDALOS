@@ -1,0 +1,27 @@
+[org.cinnamon.theme]
+name='Tidal-Deep'
+
+[org.cinnamon.desktop.interface]
+gtk-theme='Tidal-Deep'
+icon-theme='Adwaita'
+cursor-theme='Adwaita'
+font-name='Ubuntu 10'
+
+[org.cinnamon.desktop.wm.preferences]
+theme='Adwaita'
+titlebar-font='Ubuntu Medium 10'
+button-layout=':minimize,maximize,close'
+
+[org.cinnamon.desktop.background]
+picture-uri='file:///usr/share/backgrounds/tidalos/tidal-depths.svg'
+picture-options='zoom'
+
+[org.cinnamon]
+panels-enabled=['1:0:bottom']
+panels-height=['1:52']
+favorite-apps=['tidalos-welcome.desktop', 'nemo.desktop', 'org.gnome.Terminal.desktop', 'cinnamon-settings.desktop']
+
+[org.nemo.desktop]
+home-icon-visible=true
+computer-icon-visible=false
+trash-icon-visible=true

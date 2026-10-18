@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+if [ ! -r /cdrom/casper/filesystem.squashfs ]; then
+    zenity --error --title="TIDALOS-Installer" \
+        --text="Der Installer muss aus der TIDALOS-Live-ISO gestartet werden."
+    exit 1
+fi
+
+exec sudo -E /usr/bin/calamares

@@ -1,0 +1,14 @@
+#!/bin/sh
+# Omit live hooks for features deliberately absent from this preview image.
+set -eu
+prereqs() { echo "casper plymouth"; }
+case "${1:-}" in prereqs) prereqs; exit 0 ;; esac
+: "${DESTDIR:?This hook must run inside mkinitramfs}"
+# The image has no on-disc APT package repository. Keep the online Ubuntu sources.
+rm -f "$DESTDIR/scripts/casper-bottom/41apt_cdrom"
+if [ ! -x /usr/lib/update-notifier/apt-check ]; then
+    rm -f "$DESTDIR/scripts/casper-bottom/31disable_update_notifier"
+fi
+if [ ! -f /etc/default/apport ]; then
+    rm -f "$DESTDIR/scripts/casper-bottom/33enable_apport_crashes"
+fi

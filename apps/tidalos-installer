@@ -11,7 +11,9 @@ branding="/etc/calamares/branding/tidalos/branding.desc"
 slideshow="/etc/calamares/branding/tidalos/show.qml"
 release="/etc/tidalos-release"
 if [ ! -r "$release" ] || ! grep -qx 'IMAGE_BUILD=r4' "$release" ||
-   [ ! -r "$branding" ] || ! grep -q '^slideshow: "show.qml"$' "$branding" || [ ! -r "$slideshow" ]; then
+   [ ! -r "$branding" ] ||
+   ! grep -q '^[[:space:]]*slideshow:[[:space:]]*"show.qml"[[:space:]]*$' "$branding" ||
+   [ ! -r "$slideshow" ]; then
     zenity --error --title="TIDALOS-Installer" \
         --text="Die Calamares-Branding-Dateien fehlen oder sind veraltet. Bitte Build r4 von der ISO starten."
     exit 1

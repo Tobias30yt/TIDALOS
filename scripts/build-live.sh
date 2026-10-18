@@ -62,7 +62,7 @@ for branding_dir in "$root/etc/calamares/branding/tidalos" "$root/usr/share/cala
   install -m 644 "$repo/assets/branding/tidalos.svg" "$branding_dir/tidalos.svg"
   if ! cmp -s "$repo/config/calamares/branding.desc" "$branding_dir/branding.desc" ||
      ! cmp -s "$repo/config/calamares/show.qml" "$branding_dir/show.qml" ||
-     ! grep -q '^slideshow: "show.qml"$' "$branding_dir/branding.desc"; then
+     ! grep -q '^[[:space:]]*slideshow:[[:space:]]*"show.qml"[[:space:]]*$' "$branding_dir/branding.desc"; then
     echo "Calamares branding config is missing or differs from the repository source: $branding_dir" >&2
     exit 1
   fi
